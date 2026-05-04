@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pertanyaan Iseng 😆</title>
+
+<style>
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffd6e7, #ffeef5);
+        text-align: center;
+        overflow: hidden;
+    }
+
+    h1 {
+        margin-top: 50px;
+        color: #ff4d88;
+    }
+
+    .container {
+        position: relative;
+        height: 100vh;
+    }
+
+    .btn {
+        padding: 15px 30px;
+        font-size: 18px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s;
+        position: absolute;
+    }
+
+    #yes {
+        background-color: #ff4d88;
+        color: white;
+        left: 40%;
+        top: 60%;
+    }
+
+    #no {
+        background-color: #999;
+        color: white;
+        left: 55%;
+        top: 60%;
+    }
+
+    .love {
+        position: absolute;
+        font-size: 24px;
+        animation: float 4s infinite ease-in-out;
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-20px); }
+        100% { transform: translateY(0px); }
+    }
+
+    /* Labubu sederhana (kartun bulat) */
+    .labubu {
+        position: absolute;
+        bottom: 20px;
+        left: 45%;
+        width: 80px;
+        height: 80px;
+        background: #fff;
+        border-radius: 50%;
+        border: 3px solid #ff4d88;
+        animation: roll 2s infinite linear;
+    }
+
+    .labubu::before, .labubu::after {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: black;
+        border-radius: 50%;
+        top: 25px;
+    }
+
+    .labubu::before { left: 20px; }
+    .labubu::after { right: 20px; }
+
+    @keyframes roll {
+        0% { transform: rotate(0deg) translateX(0); }
+        50% { transform: rotate(180deg) translateX(50px); }
+        100% { transform: rotate(360deg) translateX(0); }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Maukah anda masuk rumah sakit jiwa? 😆</h1>
+
+    <button id="yes" class="btn">Yes ❤️</button>
+    <button id="no" class="btn">No 😅</button>
+
+    <div class="labubu"></div>
+</div>
+
+<script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+
+    let yesScale = 1;
+
+    // Tombol NO kabur
+    noBtn.addEventListener("mouseover", () => {
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+
+        // YES makin besar
+        yesScale += 0.2;
+        yesBtn.style.transform = `scale(${yesScale})`;
+    });
+
+    // Klik YES
+    yesBtn.addEventListener("click", () => {
+        alert("Yahh ketahuan 😆❤️");
+    });
+
+    // Tambah love love random
+    function createLove() {
+        const love = document.createElement("div");
+        love.classList.add("love");
+        love.innerText = "❤️";
+
+        love.style.left = Math.random() * window.innerWidth + "px";
+        love.style.top = Math.random() * window.innerHeight + "px";
+
+        document.body.appendChild(love);
+
+        setTimeout(() => {
+            love.remove();
+        }, 4000);
+    }
+
+    setInterval(createLove, 500);
+</script>
+
+</body>
+</html>
